@@ -26,12 +26,23 @@ Results are from the **player’s perspective**. `determine_winner(player, compu
 | scissors | scissors | tie |
 
 ### Agreed plan
+We will build one independent round using the supplied interface and server.
+The winner function will return win, lose, or tie from the player's perspective.
+Both choices and the result will appear. Choosing again starts a new round.
+We will not add scoring, storage, accounts, frameworks, or AI APIs.
 
-Before implementation, predict one matchup and explain it with your local coding agent. Discuss a short plan and checks. Once it makes sense, ask the agent to replace this paragraph with the agreed plan, preserving the expected results above. Continue in the same chat.
+Prediction: Player Paper beats computer Rock because Paper covers Rock.
+AI helped clarify the player's perspective during planning.
+A valid losing round is player Rock against computer Paper, returning lose.
+Missing input and unsupported input such as banana must return HTTP 400
+with a helpful message.
 
+We will add nine explicit unit outcomes, a real request/result integration
+test, and a browser round with replay using the supplied fixtures.
+Tests will use unit, integration, or e2e markers. Positive tests will control
+only randomness. We will reuse the supplied negative checks, run the full
+check.py, and review the code and tests against this plan.
 ### Checks
-
-Before coding, agree this small test plan with AI:
 
 | Level | Cases and evidence |
 | --- | --- |
@@ -41,10 +52,27 @@ Before coding, agree this small test plan with AI:
 | E2E — positive | Add a real-browser round and replay in tests/e2e/test_round.py using the supplied live_server/page fixtures. Fix only the computer choice; use real rules and real HTTP. |
 
 Use `unit`, `integration`, and `e2e` pytest markers. Run `.venv/bin/python check.py` for Black, Pylint, fast tests, and browser checks; then review the diff. Keep shared settings and meaningful assertions intact. The student still plays, inspects a rule and its test, and gives feedback. Browser automation does not establish every aspect of usability or application performance.
+### Work record
 
 ### Work record
 
-- Issue: add your own issue URL.
-- Pull request / CI: add actual URLs when they exist.
-- Implementation: **Not implemented.** The shell is supplied; `game.py` is unfinished.
+- Issue: https://github.com/mp2395/mr-rps/issues/1
+- Implementation: [Winner rules](game.py).
+- Tests: [Unit and integration](tests/test_game.py) and
+  [Browser round and replay](tests/e2e/test_round.py).
+- Full local checks: `.venv/bin/python check.py` passed Black,
+  Pylint, 23 non-browser tests, and 6 Chromium browser tests.
+- Test reviewed with AI help: player Paper against computer Rock
+  must return win. This catches an incorrect result for that matchup.
+- Browser observation: I chose Rock, the computer chose Rock,
+  and the result was a tie. This makes sense because both moves
+  were the same. Clicking another move started a new round.
+- - Manual keyboard controls: Tab/Option+Tab highlighted a move,
+  and Enter played a new round successfully.
+- Help received: ChatGPT helped with planning, code, tests,
+  troubleshooting, and review. Local Copilot was attempted but
+  did not produce usable responses; implementation help came
+  through browser chat.
+- - Pull request: https://github.com/mp2395/mr-rps/pull/2
+- CI run: https://github.com/mp2395/mr-rps/actions/runs/41790838229
 - Checks: **Rules not verified.** Supplied request/browser tests cover the shell only. After implementation, record actual full-check results and your browser observations here; put detailed results in the PR. Passing formatting and analysis alone is not evidence of correct rules.
