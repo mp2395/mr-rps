@@ -73,6 +73,6 @@ Use `unit`, `integration`, and `e2e` pytest markers. Run `.venv/bin/python check
   troubleshooting, and review. Local Copilot was attempted but
   did not produce usable responses; implementation help came
   through browser chat.
-- Pull request: to be added before merging.
-- CI run: to be added before merging.
+- - Pull request: https://github.com/mp2395/mr-rps/pull/2
+- CI run: https://github.com/mp2395/mr-rps/actions/runs/41790838229
 - Checks: **Rules not verified.** Supplied request/browser tests cover the shell only. After implementation, record actual full-check results and your browser observations here; put detailed results in the PR. Passing formatting and analysis alone is not evidence of correct rules.
